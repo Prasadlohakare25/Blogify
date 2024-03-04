@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div><%- include('./components/navbar') %></div>
+    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden pt-4 bg-gradient-to-b from-slate-100 to-slate-400">
+
+        <div
+            class="w-full items-center mx-auto max-w-screen-lg border-2 border-slate-500 shadow-lg shadow-slate-700 bg-slate-100 p-4 ">
+            <div class="group w-full">
+                <div
+                    class="flex before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:right-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 justify-center align-center items-center ">
+                    <div class="rounded-xl overflow-hidden shadow-md hover:scale-105 hover:shadow-xl transform-hover duration-300 shadow-slate-800">
+                        <img src="<%= blog.coverImageUrl %>" alt="" class="h-[260px] sm:[400px] w-full object-cover">
+                    </div>
+                </div>
+                <div>
+                    <div class="text-center pt-4">
+                        <h1 class="font-bold text-3xl mb-2">
+                            <u>
+                                <%= blog.title %>
+                            </u>
+                        </h1>
+                        <p class="peer mb-6 text-gray-950">
+                            <%= blog.body %>
+                        </p>
+                    </div>
+                    <div class="flex border-t-2 p-2 border-black">
+                        <img src="<%= blog.createdBy.profilePhoto %>" width="50px" alt="hello" class="rounded-full">
+                        <p class="pt-2 pl-1 font-bold">
+                            <%= blog.createdBy.fullName %>
+                        </p>
+                    </div>
+                    <div class="">
+                        <h1 class="text-xl">Comments (<%= comments.length %>)</h1>
+                        <% if (locals.user) { %>
+                            <form method="post" action="/blog/comment/<%= blog._id %>" class="">
+                                <div class="mb-1 mt-1">
+                                    <input
+                                        class="text-sm appearance-none rounded w-full py-1 px-3 text-gray-950 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline h-10 border-2 border-slate-500"
+                                        id="content" name="content" type="text" placeholder="Enter comment..." />
+                                </div>
+                                <div class="flex w-full">
+                                    <button
+                                        class=" bg-blue-600 hover:bg-grey-900 text-white text-sm  px-2 py-1 font-semibold rounded-sm focus:outline-none focus:shadow-outline"
+                                        type="submit">
+                                        Add
+                                    </button>
+                                </div>
+                            </form>
+                            <% } %>
+                                <div>
+                                    <% comments.forEach(comment=> { %>
+                                        <div class="flex border-t-2 p-2 border-slate-800">
+                                            <img src="<%= comment.createdBy.profilePhoto %>" width="30px" alt="hello"
+                                                class="rounded-full">
+                                            <p class="pt-2 pl-1 font-bold">
+                                                <%= comment.createdBy.fullName %>
+                                            </p>
+                                        </div>
+                                        <pre><%= comment.content %></pre>
+                                        <% }) %>
+                                </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div><%- include('./components/navbar') %></div>
+    <!-- component -->
+    <div class="max-w-md mx-auto p-8 bg-white rounded-md shadow-md">
+        <!-- <h2 class="text-2xl font-semibold mb-6">Get in Touch</h2> -->
+        <form action="/blog" method="POST" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="coverImage" class="block text-gray-700 text-sm font-bold mb-2">Cover Image</label>
+                <input type="file" id="coverImage" name="coverImage"
+                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title of the blog</label>
+                <input type="text" id="title" name="title" required
+                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-6">
+                <label for="body" class="block text-gray-700 text-sm font-bold mb-2">Your Content</label>
+                <textarea id="body" name="body" rows="4" placeholder="Write your blog here..."
+                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+            </div>
+            <button type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
+                Add Blog
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>
